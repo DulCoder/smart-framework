@@ -115,7 +115,7 @@ public final class PropsUtil {
      * @param key
      * @return
      */
-    public boolean getBoolean(Properties props, String key) {
+    public static boolean getBoolean(Properties props, String key) {
         return getBoolean(props,key,false);
     }
 
@@ -127,7 +127,7 @@ public final class PropsUtil {
      * @param defaultValue 默认值
      * @return
      */
-    public boolean getBoolean(Properties props, String key, Boolean defaultValue) {
+    public static boolean getBoolean(Properties props, String key, Boolean defaultValue) {
         boolean value = defaultValue;
         if (props.containsKey(key)){
             value = CastUtil.castBoolean(props.getProperty(key));

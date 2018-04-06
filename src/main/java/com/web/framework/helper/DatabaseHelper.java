@@ -10,6 +10,7 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.sql.DataSource;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,19 +34,21 @@ public final class DatabaseHelper {
 
     static {
         CONNECTION_HOLDER = new ThreadLocal<Connection>();
+
         QUERY_RUNNER = new QueryRunner();
 
-        Properties db = PropsUtil.loadProps("db.properties");
-        String driver = db.getProperty("jdbc.driver");
-        String url = db.getProperty("jdbc.url");
-        String username = db.getProperty("jdbc.username");
-        String password = db.getProperty("jdbc.password");
-
         DATA_SOURCE = new BasicDataSource();
-        DATA_SOURCE.setDriverClassName(driver);
-        DATA_SOURCE.setUrl(url);
-        DATA_SOURCE.setUsername(username);
-        DATA_SOURCE.setPassword(password);
+        DATA_SOURCE.setDriverClassName(ConfigHelper.getJdbcDriver());
+        DATA_SOURCE.setUrl(ConfigHelper.getJdbcUrl());
+        DATA_SOURCE.setUsername(ConfigHelper.getJdbcUsername());
+        DATA_SOURCE.setPassword(ConfigHelper.getJdbcPassword());
+    }
+
+    /**
+     * 获取数据源
+     */
+    public static DataSource getDataSource() {
+        return DATA_SOURCE;
     }
 
     /**

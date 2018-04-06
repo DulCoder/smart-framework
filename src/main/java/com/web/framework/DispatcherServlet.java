@@ -1,12 +1,13 @@
 package com.web.framework;
 
-import com.sun.deploy.net.HttpResponse;
 import com.web.framework.bean.Data;
 import com.web.framework.bean.Handler;
 import com.web.framework.bean.Param;
 import com.web.framework.bean.View;
 import com.web.framework.helper.*;
-import com.web.framework.utils.*;
+import com.web.framework.utils.JsonUtil;
+import com.web.framework.utils.ReflectionUtil;
+import com.web.framework.utils.StringUtil;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -19,8 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
-import java.util.Enumeration;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
